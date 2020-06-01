@@ -39,6 +39,25 @@ app.get("/api/timestamp/:date_string",function(req,res){
 
 })
 
+///
+// your Second API endpoint... 
+
+app.get("/api/whoami",function(req,res){
+  console.log(req.headers);
+  let lang = req.headers["accept-language"];
+  let sys = req.headers["user-agent"];
+  let ip = req.headers["x-forwarded-for"].split(",");
+  // console.log(ip)
+  res.json({
+    ipaddress:ip[0],
+    language:lang,
+    software:sys 
+  })
+})
+
+
+
+
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
